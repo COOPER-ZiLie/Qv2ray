@@ -59,9 +59,9 @@ jobs:
         setup-python: false
 
     - name: run-vcpkg
-      uses: lukka/run-vcpkg@v11
+      uses: lukka/run-vcpkg@v10
       with:
-        vcpkgGitCommitId: "5b1214315250939257ef5d62ecdcbca18cf4fb1c"
+        vcpkgGitCommitId: "cc2dd8fed39acc588c9a9a04b1ea4d04ce5308f0"
         vcpkgJsonGlob: '**/vcpkg.json'
         runVcpkgInstall: true
   
