@@ -76,11 +76,11 @@ jobs:
         setup-python: false
 
     - name: run-vcpkg
-      uses: lukka/run-vcpkg@dev/always_cache_in_post_action
+      uses: lukka/run-vcpkg@v11
       with:
-        setupOnly: true
         vcpkgJsonGlob: '**/vcpkg.json'
         runVcpkgInstall: true
+        setupOnly: true
   
     - name: Build
       run: |
