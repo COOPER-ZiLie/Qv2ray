@@ -64,9 +64,6 @@ jobs:
       if: matrix.config.has_msvc
       uses: ilammy/msvc-dev-cmd@v1
       
-    - name: cmakeInstall
-      uses: lukka/run-cmake@v3
-
     - name: Install Qt
       uses: jurplel/install-qt-action@v2.14.0
       with:
