@@ -63,6 +63,9 @@ jobs:
     - name: Install MSVC compiler
       if: matrix.config.has_msvc
       uses: ilammy/msvc-dev-cmd@v1
+      
+    - name: cmakeInstall
+      uses: lukka/run-cmake@v3
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v2.14.0
@@ -73,9 +76,9 @@ jobs:
         setup-python: false
 
     - name: run-vcpkg
-      uses: lukka/run-vcpkg@v11
+      uses: lukka/run-vcpkg@dev/always_cache_in_post_action
       with:
-        vcpkgGitCommitId: "5b1214315250939257ef5d62ecdcbca18cf4fb1c"
+        setupOnly: true
         vcpkgJsonGlob: '**/vcpkg.json'
         runVcpkgInstall: true
   
