@@ -52,7 +52,10 @@ jobs:
       with:
         submodules: 'recursive'
         
-     - uses: lukka/get-cmake@latest
+    - run: |
+        brew install yasm
+      if: contains( matrix.config.os, 'macos')
+
 
     - name: Install ninja-build tool
       uses: seanmiddleditch/gha-setup-ninja@v3
