@@ -1,7 +1,7 @@
 name: Build for Desktop
 
 on:
-  workflow_dispatch:
+  push:
     branches:
       - '**'
     paths-ignore:
@@ -32,6 +32,21 @@ jobs:
       matrix:
         config:
         - {
+            name: "Windows MSVC", artifact: "Windows",
+            os: windows-latest,
+            cc: "cl.exe", cxx: "cl.exe",
+            arch: "win64_msvc2019_64",
+            has_msvc: true,
+            has_release: true,
+            vcpkgTriplet: x64-windows
+          }
+        - {
+            name: "Ubuntu", artifact: "Linux",
+            os: ubuntu-latest,
+            has_release: false,
+            vcpkgTriplet: x64-linux
+          }
+        - {
             name: "macOS", artifact: "macOS",
             os: macos-latest,
             has_release: true,
@@ -59,9 +74,9 @@ jobs:
         setup-python: false
 
     - name: run-vcpkg
-      uses: lukka/run-vcpkg@v11
+      uses: lukka/run-vcpkg@v10
       with:
-        vcpkgGitCommitId: "5b1214315250939257ef5d62ecdcbca18cf4fb1c"
+        vcpkgGitCommitId: "cc2dd8fed39acc588c9a9a04b1ea4d04ce5308f0"
         vcpkgJsonGlob: '**/vcpkg.json'
         runVcpkgInstall: true
   
@@ -77,12 +92,10 @@ jobs:
           -DUSE_SYSTEM_UVW=OFF \
           -GNinja
         cmake --build . --parallel
-
     - name: Install
       run: |
         cd build
         cmake --install .
-
     - name: Generate 7zip
       run: cd build && 7z a ../Qv2ray.7z -- ./Qv2ray
 
