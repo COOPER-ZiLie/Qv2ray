@@ -33,7 +33,7 @@ jobs:
         config:
         - {
             name: "Windows MSVC", artifact: "Windows",
-            os: windows-latest,
+            os: windows-2019,
             cc: "cl.exe", cxx: "cl.exe",
             arch: "win64_msvc2019_64",
             has_msvc: true,
@@ -42,7 +42,7 @@ jobs:
           }
         - {
             name: "macOS", artifact: "macOS",
-            os: macos-latest,
+            os: macos-11.0,
             has_release: true,
             vcpkgTriplet: x64-osx
           }
@@ -56,7 +56,7 @@ jobs:
      
     - run: |
         brew install yasm
-      if: contains( matrix.os, 'macos')
+      if: contains( matrix.config.os, 'macos')
 
     - name: Install ninja-build tool
       uses: seanmiddleditch/gha-setup-ninja@v3
