@@ -41,12 +41,6 @@ jobs:
             vcpkgTriplet: x64-windows
           }
         - {
-            name: "Ubuntu", artifact: "Linux",
-            os: ubuntu-latest,
-            has_release: false,
-            vcpkgTriplet: x64-linux
-          }
-        - {
             name: "macOS", artifact: "macOS",
             os: macos-latest,
             has_release: true,
